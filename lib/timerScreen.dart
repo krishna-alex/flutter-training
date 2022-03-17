@@ -18,6 +18,17 @@ class TimerScreenState extends State<TimerScreen> {
   int mins = 0;
 
   @override
+  @protected
+  @mustCallSuper
+  void initState() {
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      handleTick();
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Timer Screen"),),
@@ -26,23 +37,14 @@ class TimerScreenState extends State<TimerScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TimerContainer(title: "Hours", value: "00"),
-              TimerContainer(title: "Minutes", value: "00"),
-              TimerContainer(title: "Seconds", value: seconds.toString(),)
+              TimerContainer(title: "Hours", value: (seconds/3600).toInt().toString()),
+              TimerContainer(title: "Minutes", value: (seconds/60).toInt().toString()),
+              TimerContainer(title: "Seconds", value: (seconds%60).toInt().toString(),)
             ],
           ),
           ElevatedButton(onPressed: (){
             setState(() {
-              timer = Timer.periodic(Duration(seconds: 1), (timer) {
-                handleTick();
-              });
-
-              if(!isActive) {
-                isActive = true;
-              }
-              else {
-                isActive = false;
-              }
+              isActive = !isActive;
             });
           }, child: Text(isActive? "Stop": "Start"))
 
@@ -53,6 +55,7 @@ class TimerScreenState extends State<TimerScreen> {
   }
 
   void handleTick(){
+    if (!isActive) return;
     setState(() {
       seconds++;
     });
