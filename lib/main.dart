@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firstapp/timerScreen.dart';
+import 'package:firstapp/calculator/calculator_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,8 +36,8 @@ class HomeScreen extends StatelessWidget{
                startTimerScreen(context);
             }, child: Text("Start timer screen")),
             ElevatedButton(onPressed: (){
-                start
-            } child: child)
+              startCalculatorScreen(context);
+            }, child: Text("Start Calculator Screen")),
           ],
         ),
       ),
@@ -45,6 +46,9 @@ class HomeScreen extends StatelessWidget{
 
   void startTimerScreen(context) async{
     Navigator.push(context, MaterialPageRoute(builder: (context) => TimerScreen()));
+  }
+  void startCalculatorScreen(context) async{
+    Navigator.push(context, MaterialPageRoute(builder: (context) => CalculatorScreen()));
   }
 }
 
