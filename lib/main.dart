@@ -1,4 +1,5 @@
 
+import 'package:firstapp/Database/Input_Information.dart';
 import 'package:flutter/material.dart';
 import 'package:firstapp/timerScreen.dart';
 import 'package:firstapp/calculator/calculator_screen.dart';
@@ -38,6 +39,9 @@ class HomeScreen extends StatelessWidget{
             ElevatedButton(onPressed: (){
               startCalculatorScreen(context);
             }, child: Text("Start Calculator Screen")),
+            ElevatedButton(onPressed: (){
+              startCatalogScreen(context);
+            }, child: Text("Start Catalog Screen")),
           ],
         ),
       ),
@@ -49,6 +53,9 @@ class HomeScreen extends StatelessWidget{
   }
   void startCalculatorScreen(context) async{
     Navigator.push(context, MaterialPageRoute(builder: (context) => CalculatorScreen()));
+  }
+  void startCatalogScreen(context) async{
+    Navigator.push(context, MaterialPageRoute(builder: (context) => InputInformation()));
   }
 }
 

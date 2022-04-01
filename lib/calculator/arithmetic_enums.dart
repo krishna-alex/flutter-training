@@ -1,0 +1,6 @@
+enum ArithmeticOperations{
+  ADDITION,
+  SUBTRACTION,
+  MULTIPLICATION,
+  DIVISION,
+}

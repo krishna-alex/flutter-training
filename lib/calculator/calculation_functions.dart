@@ -1,5 +1,6 @@
 abstract class CalculationFunctions{
-  void addition(int a, int b);
-  void subtraction(int a, int b);
-  void multiplication(int a, int b);
+  int addition(int a, int b);
+  int subtraction(int a, int b);
+  double multiplication(double a, double b);
+  double division(double a, double b);
 }

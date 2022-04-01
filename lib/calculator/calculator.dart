@@ -1,20 +1,38 @@
-//import 'package:calculator/calculation_functions.dart';
+
 import 'package:firstapp/calculator/calculation_functions.dart';
+import 'dart:developer' as developer;
 
 class Calculator implements CalculationFunctions{
+  String TAG = "Calculator";
   @override
-  void addition(int a, int b) {
-    // TODO: implement addition
+  int addition(int a, int b) {
+    int answer = a+ b;
+    return answer;
   }
 
   @override
-  void multiplication(int a, int b) {
-    // TODO: implement multiplication
+  double multiplication(double a, double b) {
+    double answer = a * b;
+    return answer;
   }
 
   @override
-  void subtraction(int a, int b) {
-    // TODO: implement subtraction
+  int subtraction(int a, int b) {
+    int answer = a - b;
+    return answer;
+  }
+
+  @override
+  double division(double a, double b) {
+    double answer = 0;
+    try{
+      answer = a/b;
+    }
+    catch (e){
+      developer.log("Exception in division $e", name: TAG );
+    }
+    return answer;
+
   }
 
 }
