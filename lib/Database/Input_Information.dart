@@ -42,8 +42,21 @@ class InputInformation extends StatelessWidget {
               height: 10,
             ),
             ElevatedButton(onPressed: () async {
-              insertStudentData();
+              insertBookData();
             },child: Text("Insert")),
+
+            ElevatedButton(onPressed: () async{
+              var book = await _databaseHelper.queryAllRows();
+              developer.log("Book details $book", name: _TAG);
+            }, child: Text("Get Data")),
+
+            ElevatedButton(onPressed: () async{
+              updateData();
+            }, child: Text("Update Data")),
+
+            ElevatedButton(onPressed: () async{
+              deleteData();
+            }, child: Text("Delete Data")),
           ],
         )
       )
@@ -63,15 +76,32 @@ class InputInformation extends StatelessWidget {
     return Future.value(abc);
   }
 
-  void insertStudentData(){
+  void insertBookData(){
     String name = nameController.text;
     int id = int.parse(IdController.text);
     String author = AuthorController.text;
     BookCatalog bookCatalog = BookCatalog(bookName: name, bookId: id, author: author);
-    BookCatalog bookCatalog2 = BookCatalog(bookName: name, bookId: id, author: author);
     List<BookCatalog> bookList = [];
     bookList.add(bookCatalog);
-    bookList.add(bookCatalog2);
     _databaseHelper.insertBookCatalog(bookList);
+  }
+
+  void updateData() async{
+    String name = nameController.text;
+    String id = IdController.text;
+    int idNumber = int.parse(IdController.text) ;
+    String author = AuthorController.text;
+    Map<String, dynamic> bookDataMap = {
+      "Id" : 1,
+      "BookName" : name,
+      "Author" : author,
+      "BookId" : idNumber,
+    };
+    await _databaseHelper.updateData(bookDataMap);
+  }
+
+  void deleteData() async{
+    int id = 1;
+    await _databaseHelper.deleteData(id);
   }
 }
